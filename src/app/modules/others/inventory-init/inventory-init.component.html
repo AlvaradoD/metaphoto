@@ -1,0 +1,126 @@
+<div class="col-12 mt-2">
+
+<div class="card">
+  <div class="upper"> <img src="../../../assets/images/ATITLAN1.jpg" class="img-fluid" style="height: 165px;"> </div>
+  <div class="user text-center">
+      <div class="profile"> <img src="../../../assets/images/profilephoto2.jpg"   class="rounded-circle" width="80"> </div>
+  </div>
+  <div class="mt-5 text-center" style="padding-top: 20px;">
+      <h4 class="mb-0">{{lblUserName}}</h4> <span class="text-muted d-block mb-2">{{lblUserUserName}}</span> 
+      
+      <!-- <button class="btn btn-primary btn-sm follow">Follow</button> -->
+      <a (click)="backClicked()" class="btn btn-primary btn-sm follow">Log out</a>
+
+      <div class="d-flex justify-content-between align-items-center mt-4 px-4">
+          <div class="stats">
+              <h6 class="mb-0">Id</h6> <span>{{lblUserId}}</span>
+          </div>
+          <div class="stats">
+              <h6 class="mb-0">Albums</h6> <span>{{lblUserNoAlbums}}</span>
+          </div>
+          <div class="stats">
+              <h6 class="mb-0">Photos</h6> <span>{{lblUserNoPhotos}}</span>
+          </div>
+      </div>
+  </div>
+</div>
+  
+  
+  <tabset #staticTabs>
+
+   
+    <tab heading="Albums">   
+      
+
+
+     
+
+    <ejs-grid #differenceGrid id="differenceGrid" [toolbar]='toolbarOptions' (rowSelected)='rowSelected($event)'  (dataBound)='dataBoundDiff()' [dataSource]="differenceGridDS" [allowSorting]="true" [allowPaging]="true">
+    <e-columns>
+      <e-column field="userId" headerText="User Id" width="150"></e-column>
+      <e-column field="id" headerText="Id Album" width="150"></e-column>
+      <e-column field="title" headerText="Title" width="150"></e-column>
+    </e-columns>
+  </ejs-grid>
+
+
+
+    </tab>
+
+
+
+
+
+
+    <tab heading="Photos">   
+
+      <h1 class="text-center mt-4">{{AlbumSelectName}}</h1>
+
+      <div #addDevice class="row mt-40" ></div>
+
+      <div class="mt-5 text-center" style="padding-top: 20px;">
+      <a (click)="seemore()" style="margin-bottom: 40px; width: 60%;font-weight: bold;" class="btn btn-primary btn-sm follow">see more</a>
+
+      <a (click)="cleardiv()" style="margin-bottom: 40px; width: 60%;font-weight: bold;" class="btn btn-primary btn-sm follow">clear</a>
+
+      </div>
+    </tab>
+
+
+    <tab heading="Configuration">  
+      <form [formGroup]="newSerialForm" class="p-10" id="newSerialForm" (keydown.tab)="$event.preventDefault()"
+      (keydown.enter)="$event.preventDefault()">
+      <br>
+      <div class="col-12">
+        <div  style="padding: 30px;" class="form-group">
+          <label for="serieValue">Number of photos to display each time you press see more</label>
+          <input formControlName="serieValue" value="10"  id="serieValue" type="number" class="e-input" autofocus
+             />
+        </div>
+      </div>
+      <br>
+    </form>
+
+    </tab>
+
+    
+
+
+    <!-- <tab heading="Inv By Location">
+      <h1 class="text-center mt-4">Inventory by Location</h1>
+      <div class="col-12 inventory-grid mb-4">
+        <ejs-grid #inventoryGrid [dataSource]="inventory" [allowSorting]="true" [allowPaging]="true" height='100%'
+          width='100%'>
+          <e-columns>
+            <e-column field="code" headerText="Codigo"></e-column>
+            <e-column field="lotNumber" headerText="Lote" width="100"></e-column>
+            <e-column field="pallet" headerText="Pallet" width="100"></e-column>
+            <e-column field="unit" headerText="Unidad" width="100"></e-column>
+            <e-column field="qty" headerText="Cantidad" format="C" width="125"></e-column>
+            <e-column field="description" headerText="Descripcion" width="150"></e-column>
+          </e-columns>
+        </ejs-grid>
+      </div>
+    </tab> -->
+
+
+
+    <!-- <tab heading="Inv By Product">
+      <h1 class="text-center mt-4">Inventory by Product</h1>
+      <div class="col inventory-grid mb-4">
+        <ejs-grid #productGrid [dataSource]="invProduct" [allowSorting]="true" [allowPaging]="true" height="100%"
+          width="100%">
+          <e-columns>
+            <e-column field="location" headerText="Location" width="100"></e-column>
+            <e-column field="lotNumber" headerText="Lot" width="100"></e-column>
+            <e-column field="unit" headerText="Unit" width="50"></e-column>
+            <e-column field="qty" headerText="Quantity" width="100"></e-column>
+            <e-column field="packs" headerText="Packs" width="100"></e-column>
+            <e-column field="expDate" headerText="Exp. Date" width="100"></e-column>
+          </e-columns>
+        </ejs-grid>
+      </div>
+    </tab> -->
+  </tabset>
+  <ngx-spinner type="ball-spin-clockwise"></ngx-spinner>
+</div>

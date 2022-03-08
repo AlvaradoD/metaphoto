@@ -1,0 +1,66 @@
+<div class="d-flex flex-row justify-content-center">
+  <form [formGroup]="loginForm" class="form-signing" (ngSubmit)="onSubmit()">
+    <div class="text-center">
+      <img style="width: 90% !important;" class="mb-5 logo" src="../../../assets/images/hame.JPG" />
+      <br>
+      
+      
+    </div>
+   
+    <div class="form-group">
+      <div class="e-float-input">
+        <input type="text" id="username" formControlName="username" autofocus autocomplete="off"
+          (keydown.enter)="goToPassword()">
+        <span class="e-float-line"></span>
+        <label for="username" class="e-float-text">{{lblUsername}}</label>
+      </div>
+      <div *ngIf="f.username.errors">
+        <div *ngIf="f.username.errors.required && f.username.touched" class="e-error">
+          {{requiredField}}
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div class="form-group">
+      <div class="e-float-input">
+        <input type="password" #password id='password' formControlName="password"
+          (keydown)="checkPasswordKeyPressed($event)">
+        <span class="e-float-line"></span>
+        <label for="password" class="e-float-text">{{lblPassword}}</label>
+      </div>
+
+      <div *ngIf="f.password.errors">
+        <div *ngIf="f.password.errors.required && f.password.touched" class="e-error">
+          {{requiredField}}
+        </div>
+      </div>
+    </div>
+   -->
+
+   <div class="mt-5 text-center" style="margin: 5px !important;">
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>    
+    <button ejs-button class="btn btn-primary btn-sm follow" [disabled]="!loginForm.valid">{{lblButton}}</button>
+  </div>
+
+
+    <div class="">
+      <table class="mt-4">
+        <tr>
+          <th class="">Version</th>
+          <td class="">1.0.0.{{version}}</td>
+        </tr>
+        <tr>
+          <th class="">Environment</th>
+          <td class="">{{environment}}</td>
+        </tr>      
+       
+        <tr>
+          <th class="">Server Name</th>
+          <td class="">{{serverName}}</td>
+        </tr>
+      </table>
+    </div>
+  </form>
+  <ngx-spinner type="ball-spin-clockwise"></ngx-spinner>
+</div>

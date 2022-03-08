@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-grids/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-dropdowns/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-calendars/styles/material.css';
+
+@import '~ngx-toastr/toastr.css';
+
+$tabs-header-text: #e3165b;
+$links: #0000008a;
+$links-hover: black;
+
+.nav-tabs {
+  border-bottom: 0;
+}
+
+.nav-tabs .nav-link {
+  font-size: 90%;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  border: 0;
+  border-bottom: 3px solid $tabs-header-text;
+  color: $tabs-header-text;
+  &:hover {
+    border-bottom: 3px solid $tabs-header-text;
+  }
+}
+.nav-tabs .nav-link:hover {
+  border: 0;
+}
+a {
+  color: $links;
+  &:hover {
+    color: $links-hover;
+    text-decoration: none;
+  }
+}
+
+
+
+/* For Desktop */
+@media only screen and (min-width: 768px) {
+  .nav-tabs .nav-link {
+    font-size: 100%;
+  }
+}

@@ -1,0 +1,101 @@
+@import 'variables';
+@import 'mixins';
+@import 'extends';
+
+/** CSS CREATED FOR MOBILE FIRST **/
+
+.btn-normal {
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+  &.inverse {
+    width: 50%;
+  }
+}
+
+.content {
+  max-width: 375px;
+  max-height: 500px;
+  margin: auto;
+}
+
+.brand {
+  width: 15%;
+}
+
+.btn-back {
+  background-color: $alert-color;
+  color: white !important;
+  border-radius: 5px;
+
+  &::before {
+    content: '< ';
+    font-weight: bold;
+  }
+  font-size: small;
+  margin-left: 1%;
+}
+
+.btn-search{
+  background: #138496;
+  color: white;
+}
+
+.btn-save {
+  background: #28a745;
+  color: white;
+  &:disabled {
+    opacity: 0.75;
+  }
+  font-size: small;
+}
+
+.btn-delete {
+  background:$alert-color;
+  color: white;
+  &:disabled {
+    opacity: 0.75;
+  }
+}
+
+.btn-signout {
+  color: white;
+  background-color:$alert-color;
+  border-radius: 5px;
+  &:hover{
+    background-color: darkgoldenrod;
+  }
+  font-size: small;
+}
+
+.screen-content{
+  font-size: small;
+}
+
+label{
+  margin: 0;
+}
+
+h4{
+  margin: 0;
+}
+
+/* For Desktop */
+@media only screen and (min-width: 768px) {
+  .full-width {
+    width: 50%;
+
+    &.inverse {
+      width: 100%;
+    }
+  }
+
+  .content {
+    max-width: 750px;
+    max-height: 1000px;
+    margin: auto;
+  }
+}
+

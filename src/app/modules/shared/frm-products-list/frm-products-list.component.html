@@ -1,0 +1,31 @@
+<div class="">
+  <h1 class="text-center mt-4">{{lbl_title}}</h1>
+  <div class="col-12 inventory-grid mb-4">
+    <label for="product">{{lbl_product}}</label>
+    <input id="product" (keydown.tab)="onKeydown_product($event)" type="text" class="e-input" />
+    <label for="last_code">{{lbl_lastCode}}</label>
+    <input id="last_code" (keydown.tab)="onKeydown_Oldproduct($event)" type="text" class="e-input" />
+    <label for="description">{{lbl_description}}</label>
+    <input id="description" (keydown.tab)="onKeydown_Description($event)" type="text" class="e-input" />
+    <br />
+    <div class="text-center">
+      <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    </div>
+    <br />
+    <div class="col-12 inventory-grid mb-4">
+      <ejs-grid #productsGrid2 (rowSelected)="rowSelected($event)"
+                [dataSource]="products"
+                [allowSorting]="true"
+                [allowPaging]="true"
+                [allowSelection]="true" 
+                height='100%'
+                width='100%'>
+        <e-columns>
+          <e-column field="product" headerText="Product" width="150"></e-column>
+          <e-column field="description" headerText="Description" width="100"></e-column>
+        </e-columns>
+      </ejs-grid>
+    </div>
+  </div>
+
+</div>

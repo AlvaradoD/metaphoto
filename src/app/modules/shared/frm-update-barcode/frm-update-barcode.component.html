@@ -1,0 +1,85 @@
+<div class="col-12 mt-2">
+  <div *ngIf="frm_show=='0'">
+    <tabset>
+      <tab heading='Products'>
+          <h1 class="text-center mt-4">{{lbl_title}}</h1>
+          <form id="formupdatebarcode" [formGroup]="updatebarcodeform">
+            <div class="form-group">
+              <label for="iproduct">{{lbl_product}}</label>
+              <input formControlName="iproduct" id="iproduct" type="text" (keydown.tab)="onKeydown_product($event)" class="e-input" />
+              <label class="label label-default">
+                {{lbl_product_description}}
+
+              </label>
+              <img class="dataIcon" src="../../../../assets/images/icon-tasks.png" (click)="onSearch()" (keydown.tab)="prevent($event)" />
+              <!--<div *ngIf="f.location.errors">
+          <div *ngIf="f.location.errors.required && f.location.touched" class="invalid-feedback">
+            This field is required.
+          </div>
+        </div>-->
+            </div>
+            <div class="form-group">
+              <label for="barcode">{{lbl_barcode}}</label>
+              <input formControlName="barcode" id="barcode" type="text" (keydown.tab)="onKeydown_barcode($event)" class="e-input" />
+              <button id="btnverify" (click)="onverifyBarcode()" (keydown.tab)="prevent($event)" ejs-button class="e-control e-btn btn-primary full-width order-0 order-sm-1 mb-2 mx-1">{{lbl_btn_verify}}</button>
+              <div id="div_checkbarcode" *ngIf="isBC" ng-app="ngAnimate">
+                <label for="barcode">{{lbl_barcode}}</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="iquantity">{{lbl_qty}}</label>
+              <input formControlName="iquantity" id="iquantity" type="number" class="e-input" />
+            </div>
+            <div class="text-center">
+              <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+            <div class="d-flex flex-column flex-sm-row">
+              <button id="btnupdate" (click)="updateBarcode()" ejs-button class="e-control e-btn btn-primary full-width order-0 order-sm-1 mb-2 mx-1">{{lbl_btn_update}}</button>
+              <button id="btndelete" (click)="DeleteBarcode()" ejs-button class="e-control e-btn btn-primary full-width order-0 order-sm-1 mb-2 mx-1">{{lbl_btn_delete}}</button>
+              <button id="btnclear" (click)="Clear()" ejs-button class="e-control  e-btn btn-primary full-width order-0 order-sm-1 mb-2 mx-1">{{lbl_btn_clear}}</button>
+            </div>
+          </form>
+          <div class="col-12 data-grid mb-4">
+            <ejs-grid #productsGrid (rowSelected)="rowBCSelected($event)"
+                      [dataSource]="products"
+                      [allowSorting]="true"
+                      [allowPaging]="true"
+                      height='100%'
+                      width='100%'>
+              <e-columns>
+                <e-column field="Cod_Product" headerText="Product" width="150"></e-column>
+                <e-column field="Description" headerText="Description" width="100"></e-column>
+                <e-column field="bcunit" headerText="Unit" width="100"></e-column>
+                <e-column field="bcqty" headerText="Qty" width="100"></e-column>
+              </e-columns>
+            </ejs-grid>
+
+          </div>
+      </tab>
+      <tab heading="Codes">
+          <h1 class="text-center mt-4">Codes</h1>
+          <div class="col-12 data-grid mb-4">
+            <ejs-grid #barcodesGrid (rowSelected)="rowSelected($event)"
+                      [dataSource]="products"
+                      [allowSorting]="true"
+                      [allowPaging]="true"
+                      height='100%'
+                      width='100%'>
+              <e-columns>
+                <e-column field="cod_product" headerText='Product'></e-column>
+                <e-column field="description" headerText='Barcode'></e-column>
+              </e-columns>
+            </ejs-grid>
+          </div>
+      </tab>
+    </tabset>
+  </div>
+  <div *ngIf="frm_show=='1'">
+    <app-frm-check-barcode></app-frm-check-barcode>
+    <button type="button" (click)="return()" class="e-control e-btn btn-primary full-width order-0 order-sm-1 mb-2 mx-1">{{lbl_btn_accept}}</button>
+  </div>
+  <div *ngIf="frm_show=='2'">
+    <button type="button" id="btnreturn2" (click)="return()" class="e-control e-btn btn-primary full-width order-0 order-sm-1 mb-2 mx-1">{{lbl_btn_accept}}</button>
+  </div>
+</div>
+

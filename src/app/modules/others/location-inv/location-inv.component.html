@@ -1,0 +1,46 @@
+<div class="col-12 mt-2">
+  <!--Acciones para el menu-->
+  <div class="row pl-3 screen-buttons">
+    <div class="col-8 actions">
+      <a (click)="backClicked()" class="e-control e-btn btn-back my-3">Regresar</a>
+    </div>
+    <div class="col-3 systems">
+      <a (click)="refreshPage()" class="e-control e-btn btn-save my-3">Refrescar</a>
+    </div>
+  </div>
+
+  <!--Contenido de la pantalla-->
+  <div class="screen-content">
+    <h6 class="text-center">{{lblTitle}}</h6>
+    <div class="mt-4 d-flex flex-row">
+      <div class="textboxes flex-fill">
+        <div class="form-group">
+          <label for="locationSource">Ubicacion</label>
+          <input type="text" autocomplete="off" (keydown)='getInventoryKeyPress($event)' [(ngModel)]='location'
+            id="location" class="e-input" />
+        </div>
+      </div>
+      <button ejs-button class="m-2 ml-4" [disabled]='location.length==0' type="button" (click)='getInventory()'>Buscar
+      </button>
+    </div>
+    <label>{{lblLocationDescription}}</label>
+    <br>
+    <ejs-grid #detailGrid (rowSelected)="grid_OnRowSelected($event)" [dataSource]="gridDataDs" [allowSorting]="true"
+      [allowPaging]="true" height="100%" width="100%">
+      <e-columns>
+        <e-column field="codproduct" headerText="{{gridDataLabels.codproduct}}" width="150"></e-column>
+        <e-column field="lotnumber" headerText="{{gridDataLabels.lotnumber}}" width="150"></e-column>
+        <e-column field="unit" headerText="{{gridDataLabels.unit}}" width="100"></e-column>
+        <e-column field="quantity" headerText="{{gridDataLabels.quantity}}" width="130"></e-column>
+        <e-column field="licenseplate" headerText="{{gridDataLabels.licenseplate}}" width="100"></e-column>
+        <e-column field="ExpDate" headerText="{{gridDataLabels.ExpDate}}" width='160'></e-column>
+        <e-column field="description" headerText="{{gridDataLabels.description}}" width='150'></e-column>
+      </e-columns>
+    </ejs-grid>
+    <!--<div class="text-center mt-2">
+      <button ejs-button type="button" class="e-control e-btn full-width mb-3"
+        (click)="btnCopy_OnClick()">{{btnCopyText}}</button>
+    </div>-->
+    <ngx-spinner type="ball-spin-clockwise"></ngx-spinner>
+  </div>
+</div>
